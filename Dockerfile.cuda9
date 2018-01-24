@@ -1,7 +1,7 @@
 FROM tensorflow/tensorflow:1.5.0-rc1-devel-gpu
 LABEL maintainer="dmitry@kostyaev.me"
 
-RUN apt-get install -y python-opencv
+RUN apt-get update && install -y python-opencv
 
 RUN pip install --no-cache-dir --upgrade pip setuptools wheel && \
     pip install --no-cache-dir \
