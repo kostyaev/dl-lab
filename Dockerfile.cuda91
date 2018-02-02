@@ -3,7 +3,7 @@ LABEL maintainer="dmitry@kostyaev.me"
 
 # pytorch, tensorflow, keras with gpu support
 
-RUN apt-get update && apt-get install -y --no-install-recommends \
+RUN apt-get update && apt-get install -y --no-install-recommends --allow-downgrades \
     build-essential \
     cmake \
     git \
