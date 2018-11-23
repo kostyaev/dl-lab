@@ -6,6 +6,7 @@ LABEL maintainer="dmitry@kostyaev.me"
 RUN apt-get update && apt-get install -y --no-install-recommends --allow-downgrades --allow-change-held-packages \
     build-essential \
     cmake \
+    ssh \
     git \
     libgflags-dev \
     libgoogle-glog-dev \
@@ -63,7 +64,7 @@ RUN pip install --no-cache-dir -U numpy matplotlib jupyter
 
 ENV PYTHONPATH /usr/local
 RUN pip install tfcoreml tensorflow-gpu keras
-RUN pip install http://download.pytorch.org/whl/cu92/torch-0.4.1-cp27-cp27mu-linux_x86_64.whl && pip install torchvision
+RUN pip install torch torchvision
 
 # Support for long strings in terminal
 RUN echo 'COLUMNS=300' >> /root/.bashrc
