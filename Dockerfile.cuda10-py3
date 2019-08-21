@@ -78,7 +78,7 @@ RUN pip3 install --no-cache-dir \
 RUN pip3 install --no-cache-dir -U numpy matplotlib jupyter
 
 #ENV PYTHONPATH /usr/local
-RUN pip3 install tensorflow-gpu==2.0.0-beta1
+RUN pip3 install tensorflow-gpu==2.0.0-beta1 tensorflow_datasets
 RUN pip3 install torch torchvision
 
 # Support for long strings in terminal
