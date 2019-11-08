@@ -55,7 +55,9 @@ RUN apt-get install -y --no-install-recommends --allow-downgrades --allow-change
     libsndfile1 \
     && rm -rf /var/lib/apt/lists/*
 
-RUN pip3 install --no-cache-dir \
+RUN pip3 install --upgrade pip
+
+RUN pip install --no-cache-dir \
     tqdm \
     flask \
     moviepy \
@@ -75,11 +77,12 @@ RUN pip3 install --no-cache-dir \
     tornado \
     librosa
 
-RUN pip3 install --no-cache-dir -U numpy matplotlib jupyter
+
+RUN pip install --no-cache-dir -U numpy matplotlib jupyter
 
 #ENV PYTHONPATH /usr/local
-RUN pip3 install tensorflow-gpu==2.0.0-beta1 tensorflow_datasets
-RUN pip3 install torch torchvision
+RUN pip install tensorflow-gpu==2.0.0 tensorflow_datasets
+RUN pip install torch torchvision
 
 # Support for long strings in terminal
 RUN echo 'COLUMNS=300' >> /root/.bashrc
