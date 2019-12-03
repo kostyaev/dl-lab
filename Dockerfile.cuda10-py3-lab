@@ -94,6 +94,8 @@ COPY jupyter_notebook_config.py /root/.jupyter/
 COPY run_jupyter.sh /root/
 RUN chmod +x /root/run_jupyter.sh
 
+RUN pip install --no-cache-dir jupyterlab
+
 # Expose Ports for Ipython (8888)
 EXPOSE 8888
 
