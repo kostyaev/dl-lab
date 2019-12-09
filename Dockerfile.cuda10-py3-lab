@@ -53,11 +53,12 @@ RUN apt-get install -y --no-install-recommends --allow-downgrades --allow-change
     libblas-dev \
     liblapack-dev \
     libsndfile1 \
+    ffmpeg \
     && rm -rf /var/lib/apt/lists/*
 
 RUN pip3 install --upgrade pip
 
-RUN pip install --no-cache-dir \
+RUN pip install -U --no-cache-dir \
     tqdm \
     flask \
     moviepy \
@@ -75,7 +76,11 @@ RUN pip install --no-cache-dir \
     six \
     bunch \
     tornado \
-    librosa
+    librosa \
+    Pillow \
+    scipy \
+    matplotlib \
+    seaborn
 
 
 RUN pip install --no-cache-dir -U numpy matplotlib jupyter
