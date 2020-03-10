@@ -96,11 +96,17 @@ RUN echo 'COLUMNS=300' >> /root/.bashrc
 # Set up notebook config
 COPY jupyter_notebook_config.py /root/.jupyter/
 
-# Jupyter has issues with being run directly: https://github.com/ipython/ipython/issues/7062
+# Jupyter has issues with being run directly: https://github.com/tqdm/tqdm/issues/394
 COPY run_jupyter.sh /root/
 RUN chmod +x /root/run_jupyter.sh
 
-RUN pip install --no-cache-dir jupyterlab
+RUN pip install --no-cache-dir jupyterlab ipywidgets
+
+# Fix tqdm issue: https://github.com/tqdm/tqdm/issues/394
+RUN jupyter nbextension enable --py widgetsnbextension
+RUN curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
+RUN jupyter labextension install @jupyter-widgets/jupyterlab-manager
+
 
 # Expose Ports for Ipython (8888)
 EXPOSE 8888
