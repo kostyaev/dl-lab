@@ -1,4 +1,4 @@
-FROM nvidia/cuda:10.0-cudnn7-devel-ubuntu18.04
+FROM nvidia/cuda:10.1-cudnn7-devel-ubuntu18.04
 LABEL maintainer="dmitry@kostyaev.me"
 
 # pytorch, tensorflow, keras with gpu support
@@ -86,7 +86,7 @@ RUN pip install -U --no-cache-dir \
 RUN pip install --no-cache-dir -U numpy matplotlib jupyter
 
 #ENV PYTHONPATH /usr/local
-RUN pip install tensorflow-gpu==2.0.0 tensorflow_datasets
+RUN pip install tensorflow-gpu==2.1.0 tensorflow_datasets
 RUN pip install torch torchvision
 
 # Support for long strings in terminal
