@@ -80,7 +80,9 @@ RUN pip install -U --no-cache-dir \
     Pillow \
     scipy \
     matplotlib \
-    seaborn
+    seaborn \
+    Cpython \
+    plyfile
 
 
 RUN pip install --no-cache-dir -U numpy matplotlib jupyter
