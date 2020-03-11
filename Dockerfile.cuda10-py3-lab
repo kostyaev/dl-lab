@@ -82,7 +82,8 @@ RUN pip install -U --no-cache-dir \
     matplotlib \
     seaborn \
     Cython \
-    plyfile
+    plyfile \
+    dlib
 
 RUN pip install --no-cache-dir -U numpy matplotlib jupyter
 
