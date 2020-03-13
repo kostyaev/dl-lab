@@ -83,7 +83,8 @@ RUN pip install -U --no-cache-dir \
     seaborn \
     Cython \
     plyfile \
-    dlib
+    dlib \
+    opencv-python
 
 RUN pip install --no-cache-dir -U numpy matplotlib jupyter
 
