@@ -54,6 +54,7 @@ RUN apt-get install -y --no-install-recommends --allow-downgrades --allow-change
     liblapack-dev \
     libsndfile1 \
     ffmpeg \
+    libglu1 \
     && rm -rf /var/lib/apt/lists/*
 
 RUN pip3 install --upgrade pip
