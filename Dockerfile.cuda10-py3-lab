@@ -107,7 +107,7 @@ RUN pip install --no-cache-dir jupyterlab ipywidgets
 
 # Fix tqdm issue: https://github.com/tqdm/tqdm/issues/394
 RUN jupyter nbextension enable --py widgetsnbextension
-RUN curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
+RUN curl -sL https://deb.nodesource.com/setup_10.x | -E bash -
 RUN jupyter labextension install @jupyter-widgets/jupyterlab-manager
 
 
