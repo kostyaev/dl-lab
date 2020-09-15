@@ -90,7 +90,7 @@ RUN pip install -U --no-cache-dir \
 RUN pip install --no-cache-dir -U numpy matplotlib jupyter
 
 #ENV PYTHONPATH /usr/local
-RUN pip install tensorflow-gpu==2.1.0 tensorflow_datasets
+RUN pip install tensorflow-gpu tensorflow_datasets
 RUN pip install torch torchvision
 
 # Support for long strings in terminal
@@ -106,9 +106,10 @@ RUN chmod +x /root/run_jupyter.sh
 RUN pip install --no-cache-dir jupyterlab ipywidgets
 
 # Fix tqdm issue: https://github.com/tqdm/tqdm/issues/394
-#RUN jupyter nbextension enable --py widgetsnbextension
-#RUN curl -sL https://deb.nodesource.com/setup_10.x | -E bash -
-#RUN jupyter labextension install @jupyter-widgets/jupyterlab-manager
+RUN jupyter nbextension enable --py widgetsnbextension
+RUN curl -sL https://deb.nodesource.com/setup_10.x | bash -
+RUN apt-get install -y nodejs
+RUN jupyter labextension install @jupyter-widgets/jupyterlab-manager
 
 
 # Expose Ports for Ipython (8888)
