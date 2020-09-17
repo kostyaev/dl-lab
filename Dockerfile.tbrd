@@ -1,9 +1,0 @@
-FROM tensorflow/tensorflow:1.14.0-py3
-LABEL maintainer="dmitry@kostyaev.me"
-
-RUN mkdir /data/tensorboard
-
-WORKDIR /data
-EXPOSE 6006
-
-CMD tensorboard --logdir /data/tensorboard

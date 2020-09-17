@@ -1,7 +1,7 @@
 FROM nvidia/cuda:10.2-cudnn8-devel-ubuntu18.04
 LABEL maintainer="dmitry@kostyaev.me"
 
-# pytorch, tensorflow, keras with gpu support
+# Python3.7 + Tensorflow 2 + PyTorch + Jupyter Notebook 
 
 ENV TZ=Europe/Moscow
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
@@ -94,15 +94,10 @@ RUN pip install tensorflow-gpu tensorflow_datasets
 RUN pip install torch torchvision
 
 # Support for long strings in terminal
-RUN echo 'COLUMNS=300' >> /root/.bashrc
+RUN echo 'COLUMNS=300' >> /home/ubuntu/.bashrc
 
-# Set up notebook config
-COPY jupyter_notebook_config.py /root/.jupyter/
 
 # Jupyter has issues with being run directly: https://github.com/tqdm/tqdm/issues/394
-COPY run_jupyter.sh /root/
-RUN chmod +x /root/run_jupyter.sh
-
 RUN pip install --no-cache-dir jupyterlab ipywidgets
 
 # Fix tqdm issue: https://github.com/tqdm/tqdm/issues/394
@@ -111,9 +106,17 @@ RUN curl -sL https://deb.nodesource.com/setup_10.x | bash -
 RUN apt-get install -y nodejs
 RUN jupyter labextension install @jupyter-widgets/jupyterlab-manager
 
+# Use the same user as on the host
+RUN apt-get install -y sudo
+RUN addgroup --gid 1000 ubuntu && adduser --disabled-password --uid 1000 --gid 1000  --gecos '' ubuntu
+RUN adduser ubuntu sudo
+RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
+USER ubuntu
+WORKDIR "/home/ubuntu/"
+
+COPY jupyter_notebook_config.py /home/ubuntu/.jupyter/
 
 # Expose Ports for Ipython (8888)
 EXPOSE 8888
 
-WORKDIR "/root"
-CMD jupyter lab --ip="0.0.0.0"  --allow-root
+CMD jupyter lab --ip="0.0.0.0"
