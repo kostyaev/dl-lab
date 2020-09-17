@@ -1,6 +1,6 @@
 # All-in-one Docker image for Deep Learning.
 
-Includes:
+This image includes:
 - Python3.7
 - Tensorflow 2 (latest) 
 - PyTorch (latest)
@@ -10,8 +10,8 @@ Includes:
 
 Optional step. Install Nvidia-docker to pass your GPU to container. 
 
-`docker run -d --gpus all -name dl-lab -p 8888:8888  \\
+```docker run -d --gpus all -name dl-lab -p 8888:8888 \\
 		-v /home/ubuntu/data/:/home/ubuntu/data/ \\
-		-v /home/ubuntu/.ssh:/home/ubuntu/.ssh  \\
+		-v /home/ubuntu/.ssh:/home/ubuntu/.ssh \\
 		--shm-size=4gb --restart=always -e "PASSWORD=some_password_for_jupyter" 
-		dl-lab-py3-image`
+		dl-lab-py3-image```
