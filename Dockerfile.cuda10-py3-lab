@@ -93,10 +93,6 @@ RUN pip install --no-cache-dir -U numpy matplotlib jupyter
 RUN pip install tensorflow-gpu tensorflow_datasets
 RUN pip install torch torchvision
 
-# Support for long strings in terminal
-RUN echo 'COLUMNS=300' >> /home/ubuntu/.bashrc
-
-
 # Jupyter has issues with being run directly: https://github.com/tqdm/tqdm/issues/394
 RUN pip install --no-cache-dir jupyterlab ipywidgets
 
@@ -114,7 +110,10 @@ RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 USER ubuntu
 WORKDIR "/home/ubuntu/"
 
-COPY jupyter_notebook_config.py /home/ubuntu/.jupyter/
+COPY --chown=ubuntu:ubuntu  jupyter_notebook_config.py /home/ubuntu/.jupyter/
+ 
+# Support for long strings in terminal
+RUN echo 'COLUMNS=300' >> /home/ubuntu/.bashrc
 
 # Expose Ports for Ipython (8888)
 EXPOSE 8888
