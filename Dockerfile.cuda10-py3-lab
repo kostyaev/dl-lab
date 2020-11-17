@@ -93,6 +93,7 @@ RUN pip install --no-cache-dir -U numpy matplotlib jupyter
 RUN pip install tensorflow-gpu tensorflow_datasets
 RUN pip install torch torchvision
 
+
 # Jupyter has issues with being run directly: https://github.com/tqdm/tqdm/issues/394
 RUN pip install --no-cache-dir jupyterlab ipywidgets
 
@@ -101,6 +102,11 @@ RUN jupyter nbextension enable --py widgetsnbextension
 RUN curl -sL https://deb.nodesource.com/setup_10.x | bash -
 RUN apt-get install -y nodejs
 RUN jupyter labextension install @jupyter-widgets/jupyterlab-manager
+
+# Install plotly
+RUN pip install plotly==4.12.0
+# Fix jupyter blank cell issue with plotly: https://github.com/plotly/plotly.py#jupyterlab-support-python-35
+RUN jupyter labextension install jupyterlab-plotly@4.12.0
 
 # Use the same user as on the host
 RUN apt-get install -y sudo
